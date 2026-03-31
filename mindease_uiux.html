@@ -1,0 +1,1057 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>MindEase AI</title>
+<style>
+    body {
+        margin: 0;
+        font-family: 'Segoe UI', sans-serif;
+        background: linear-gradient(135deg, #f8f5ff, #eef2ff, #fff5fb);
+    }
+
+    .container {
+        display: flex;
+        min-height: 100vh;
+    }
+
+    .sidebar {
+        width: 280px;
+        background: rgba(255,255,255,0.75);
+        backdrop-filter: blur(14px);
+        padding: 28px 20px;
+        box-shadow: 4px 0 25px rgba(0,0,0,0.05);
+    }
+
+    .logo {
+        font-size: 30px;
+        font-weight: bold;
+        color: #6c63ff;
+        margin-bottom: 28px;
+    }
+
+    .logo span {
+        color: #ff6fb5;
+    }
+
+    .profile-card {
+        background: linear-gradient(135deg, #6c63ff, #9b8cff);
+        color: white;
+        border-radius: 24px;
+        padding: 20px;
+        margin-bottom: 25px;
+        box-shadow: 0 14px 30px rgba(108,99,255,0.22);
+    }
+
+    .profile-avatar {
+        width: 58px;
+        height: 58px;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.25);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 26px;
+        margin-bottom: 12px;
+    }
+
+    .profile-name {
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .profile-sub {
+        font-size: 14px;
+        opacity: 0.9;
+        margin-top: 4px;
+    }
+
+    .score-card {
+        background: rgba(255,255,255,0.95);
+        border-radius: 20px;
+        padding: 18px;
+        margin-bottom: 25px;
+        box-shadow: 0 10px 22px rgba(0,0,0,0.05);
+    }
+
+    .score-card h4 {
+        margin: 0 0 10px 0;
+        color: #4d47c3;
+        font-size: 18px;
+    }
+
+    .score-number {
+        font-size: 36px;
+        font-weight: bold;
+        color: #ff6fb5;
+    }
+
+    .score-text {
+        font-size: 14px;
+        color: #666;
+        margin-top: 6px;
+    }
+
+    .menu-item {
+        padding: 14px 18px;
+        margin-bottom: 14px;
+        border-radius: 14px;
+        background: #f5f3ff;
+        cursor: pointer;
+        font-weight: 500;
+        transition: 0.3s ease;
+    }
+
+    .menu-item:hover {
+        background: #6c63ff;
+        color: white;
+        transform: translateX(5px);
+    }
+
+    .help-box {
+        margin-top: 30px;
+        padding: 20px;
+        border-radius: 20px;
+        background: linear-gradient(135deg, #ffb6d9, #ffd9eb);
+        color: #5a2951;
+        box-shadow: 0 10px 20px rgba(255, 111, 181, 0.15);
+    }
+
+    .help-box h4 {
+        margin-bottom: 10px;
+        font-size: 18px;
+    }
+
+    .help-box p {
+        font-size: 14px;
+        line-height: 1.6;
+    }
+
+    .help-btn {
+        margin-top: 12px;
+        background: white;
+        border: none;
+        padding: 10px 16px;
+        border-radius: 12px;
+        cursor: pointer;
+        font-weight: bold;
+        color: #ff4fa0;
+        transition: 0.3s ease;
+    }
+
+    .help-btn:hover {
+        transform: scale(1.05);
+    }
+
+    .main {
+        flex: 1;
+        padding: 30px 35px;
+    }
+
+    .topbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 28px;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+
+    .top-left h1 {
+        margin: 0;
+        font-size: 34px;
+        color: #333;
+    }
+
+    .top-left p {
+        margin: 8px 0 0 0;
+        color: #666;
+        font-size: 15px;
+    }
+
+    .top-right {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+    }
+
+    .search-box {
+        background: rgba(255,255,255,0.85);
+        padding: 12px 18px;
+        border-radius: 18px;
+        box-shadow: 0 10px 22px rgba(0,0,0,0.05);
+        min-width: 250px;
+    }
+
+    .search-box input {
+        border: none;
+        outline: none;
+        background: transparent;
+        width: 100%;
+        font-size: 15px;
+    }
+
+    .icon-btn {
+        width: 48px;
+        height: 48px;
+        border-radius: 16px;
+        background: rgba(255,255,255,0.85);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 10px 22px rgba(0,0,0,0.05);
+        font-size: 22px;
+        cursor: pointer;
+        transition: 0.3s ease;
+    }
+
+    .icon-btn:hover {
+        transform: translateY(-3px);
+    }
+
+    .hero {
+        background: linear-gradient(135deg, #6c63ff, #8f7cff, #ff8cc8);
+        color: white;
+        padding: 35px;
+        border-radius: 30px;
+        box-shadow: 0 15px 30px rgba(108,99,255,0.25);
+        margin-bottom: 30px;
+    }
+
+    .hero h2 {
+        margin: 0 0 10px 0;
+        font-size: 30px;
+    }
+
+    .hero p {
+        font-size: 17px;
+        line-height: 1.7;
+        max-width: 750px;
+    }
+
+    .stats-row {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 18px;
+        margin-bottom: 28px;
+    }
+
+    .stat-card {
+        background: rgba(255,255,255,0.82);
+        backdrop-filter: blur(14px);
+        border-radius: 24px;
+        padding: 22px;
+        box-shadow: 0 12px 24px rgba(0,0,0,0.05);
+        transition: 0.3s ease;
+    }
+
+    .stat-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 18px 35px rgba(0,0,0,0.08);
+    }
+
+    .stat-title {
+        font-size: 15px;
+        color: #666;
+        margin-bottom: 10px;
+    }
+
+    .stat-value {
+        font-size: 28px;
+        font-weight: bold;
+        color: #5a54d6;
+    }
+
+    .breathing-section {
+        background: rgba(255,255,255,0.82);
+        backdrop-filter: blur(16px);
+        border-radius: 30px;
+        padding: 28px;
+        box-shadow: 0 15px 30px rgba(0,0,0,0.05);
+        margin-bottom: 30px;
+        text-align: center;
+    }
+
+    .breathing-section h3 {
+        color: #4d47c3;
+        font-size: 28px;
+        margin-bottom: 10px;
+    }
+
+    .breathing-section p {
+        color: #666;
+        margin-bottom: 25px;
+        font-size: 16px;
+    }
+
+    .breathing-orb {
+        width: 130px;
+        height: 130px;
+        margin: 0 auto 20px auto;
+        border-radius: 50%;
+        background: radial-gradient(circle at 30% 30%, #ffd2ea, #8f7cff, #6c63ff);
+        box-shadow: 0 0 40px rgba(108,99,255,0.35);
+        animation: breathe 4s infinite ease-in-out;
+    }
+
+    @keyframes breathe {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.18); }
+        100% { transform: scale(1); }
+    }
+
+    .breathing-btn {
+        background: linear-gradient(90deg, #6c63ff, #ff6fb5);
+        color: white;
+        border: none;
+        padding: 14px 24px;
+        border-radius: 18px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s ease;
+    }
+
+    .breathing-btn:hover {
+        transform: scale(1.05);
+    }
+
+    .cards, .why-grid, .testimonials {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 20px;
+        margin-bottom: 30px;
+    }
+
+    .card, .why-card, .testimonial-card {
+        background: rgba(255,255,255,0.78);
+        backdrop-filter: blur(14px);
+        border-radius: 24px;
+        padding: 24px;
+        box-shadow: 0 12px 24px rgba(0,0,0,0.05);
+        transition: 0.3s ease;
+    }
+
+    .card:hover, .why-card:hover, .testimonial-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 18px 35px rgba(0,0,0,0.08);
+    }
+
+    .card h3, .why-card h3, .testimonial-card h3 {
+        color: #5a54d6;
+        margin-bottom: 12px;
+        font-size: 20px;
+    }
+
+    .card p, .why-card p, .testimonial-card p {
+        color: #555;
+        line-height: 1.6;
+        font-size: 15px;
+    }
+
+    .section-title {
+        font-size: 28px;
+        color: #333;
+        margin-bottom: 18px;
+        font-weight: bold;
+    }
+
+    .chat-section {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 20px;
+    }
+
+    .chat-box, .wellness-box {
+        background: rgba(255,255,255,0.8);
+        backdrop-filter: blur(16px);
+        border-radius: 30px;
+        padding: 24px;
+        box-shadow: 0 15px 30px rgba(0,0,0,0.05);
+    }
+
+    .chat-title {
+        font-size: 24px;
+        font-weight: bold;
+        color: #4d47c3;
+        margin-bottom: 20px;
+    }
+
+    .messages {
+        height: 320px;
+        overflow-y: auto;
+        margin-bottom: 20px;
+        padding-right: 10px;
+    }
+
+    .msg {
+        max-width: 75%;
+        padding: 14px 18px;
+        border-radius: 18px;
+        margin: 12px 0;
+        line-height: 1.6;
+        font-size: 15px;
+    }
+
+    .bot {
+        background: #eef0ff;
+        color: #333;
+        border-top-left-radius: 6px;
+    }
+
+    .user {
+        background: linear-gradient(90deg, #6c63ff, #8b80ff);
+        color: white;
+        margin-left: auto;
+        border-top-right-radius: 6px;
+    }
+
+    .chat-input {
+        display: flex;
+        gap: 12px;
+    }
+
+    .chat-input input {
+        flex: 1;
+        padding: 15px 18px;
+        border: none;
+        border-radius: 18px;
+        outline: none;
+        background: #f4f5ff;
+        font-size: 15px;
+    }
+
+    .chat-input button {
+        padding: 15px 22px;
+        border: none;
+        border-radius: 18px;
+        background: linear-gradient(90deg, #6c63ff, #ff6fb5);
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s ease;
+    }
+
+    .chat-input button:hover {
+        transform: scale(1.04);
+    }
+
+    .mood-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+        margin-top: 18px;
+    }
+
+    .mood-btn {
+        padding: 16px;
+        border-radius: 18px;
+        border: none;
+        cursor: pointer;
+        font-weight: 600;
+        background: linear-gradient(135deg, #f0f3ff, #ffffff);
+        box-shadow: 0 8px 18px rgba(0,0,0,0.04);
+        transition: 0.3s ease;
+        font-size: 15px;
+    }
+
+    .mood-btn:hover {
+        transform: translateY(-4px);
+        background: linear-gradient(135deg, #e7e9ff, #fff0f8);
+    }
+
+    .wellness-tools {
+        margin-top: 24px;
+    }
+
+    .tool-item {
+        padding: 14px 16px;
+        margin-top: 12px;
+        background: #f9f9ff;
+        border-radius: 16px;
+        font-weight: 500;
+        transition: 0.3s;
+        cursor: pointer;
+    }
+
+    .tool-item:hover {
+        background: #eef0ff;
+        transform: translateX(4px);
+    }
+
+    @media(max-width: 1100px){
+        .chat-section {
+            grid-template-columns: 1fr;
+        }
+
+        .sidebar {
+            width: 240px;
+        }
+
+        .topbar {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .top-right {
+            width: 100%;
+            flex-wrap: wrap;
+        }
+
+        .search-box {
+            min-width: 220px;
+            width: 100%;
+        }
+    }
+    .ux-start-box {
+    background: rgba(255,255,255,0.82);
+    backdrop-filter: blur(14px);
+    border-radius: 28px;
+    padding: 28px;
+    box-shadow: 0 12px 26px rgba(0,0,0,0.05);
+    margin-bottom: 30px;
+}
+
+.ux-title {
+    font-size: 28px;
+    font-weight: bold;
+    color: #4d47c3;
+    margin-bottom: 10px;
+}
+
+.ux-subtitle {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 22px;
+    line-height: 1.7;
+}
+
+.ux-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 18px;
+}
+
+.ux-step {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    background: linear-gradient(135deg, #f5f6ff, #fff6fb);
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 8px 18px rgba(0,0,0,0.03);
+    transition: 0.3s ease;
+}
+
+.ux-step:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 26px rgba(0,0,0,0.06);
+}
+
+.ux-step-number {
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #6c63ff, #ff6fb5);
+    color: white;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    box-shadow: 0 8px 18px rgba(108,99,255,0.25);
+}
+
+.ux-step-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 6px;
+}
+
+.ux-step-text {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.6;
+}
+.emotion-care-box {
+    background: linear-gradient(135deg, rgba(255,255,255,0.88), rgba(250,245,255,0.95));
+    border-radius: 28px;
+    padding: 26px;
+    box-shadow: 0 12px 26px rgba(0,0,0,0.05);
+    margin-bottom: 30px;
+    border: 1px solid rgba(255,255,255,0.65);
+}
+
+.emotion-care-title {
+    font-size: 26px;
+    font-weight: bold;
+    color: #4d47c3;
+    margin-bottom: 10px;
+}
+
+.emotion-care-text {
+    font-size: 16px;
+    color: #666;
+    line-height: 1.8;
+    margin-bottom: 20px;
+    max-width: 850px;
+}
+
+.emotion-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.emotion-tag {
+    background: linear-gradient(135deg, #f5f4ff, #fff1f8);
+    padding: 12px 18px;
+    border-radius: 18px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #5a54d6;
+    box-shadow: 0 8px 18px rgba(0,0,0,0.03);
+    transition: 0.3s ease;
+}
+
+.emotion-tag:hover {
+    transform: translateY(-3px);
+}
+.chat-suggestions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: -6px;
+    margin-bottom: 18px;
+}
+
+.suggestion-chip {
+    background: linear-gradient(135deg, #f3f4ff, #fff1f8);
+    border: none;
+    padding: 10px 16px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #5a54d6;
+    cursor: pointer;
+    transition: 0.3s ease;
+    box-shadow: 0 8px 18px rgba(0,0,0,0.03);
+}
+
+.suggestion-chip:hover {
+    transform: translateY(-3px);
+    background: linear-gradient(135deg, #e9ebff, #ffe7f3);
+}
+button:focus,
+input:focus,
+.menu-item:focus,
+.tool-item:focus,
+.mood-btn:focus,
+.suggestion-chip:focus,
+.help-btn:focus,
+.breathing-btn:focus {
+    outline: 3px solid rgba(108, 99, 255, 0.35);
+    outline-offset: 3px;
+}
+
+button,
+.menu-item,
+.tool-item,
+.mood-btn,
+.suggestion-chip,
+.help-btn,
+.breathing-btn {
+    min-height: 44px;
+}
+
+.chat-input input {
+    min-height: 48px;
+    font-size: 16px;
+}
+
+body {
+    line-height: 1.6;
+}
+
+.msg {
+    font-size: 15.5px;
+}
+.safety-box {
+    background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(245,248,255,0.95));
+    border-radius: 28px;
+    padding: 28px;
+    box-shadow: 0 12px 26px rgba(0,0,0,0.05);
+    margin-bottom: 30px;
+    border: 1px solid rgba(255,255,255,0.65);
+}
+
+.safety-title {
+    font-size: 28px;
+    font-weight: bold;
+    color: #4d47c3;
+    margin-bottom: 12px;
+}
+
+.safety-text {
+    font-size: 16px;
+    color: #666;
+    line-height: 1.8;
+    margin-bottom: 20px;
+    max-width: 850px;
+}
+
+.safety-points {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 16px;
+}
+
+.safety-point {
+    background: linear-gradient(135deg, #f7f8ff, #fff4fa);
+    padding: 18px;
+    border-radius: 20px;
+    box-shadow: 0 8px 18px rgba(0,0,0,0.03);
+    font-size: 15px;
+    color: #555;
+    line-height: 1.7;
+    transition: 0.3s ease;
+}
+
+.safety-point:hover {
+    transform: translateY(-4px);
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="sidebar">
+        <div class="logo">Mind<span>Ease</span> AI</div>
+
+        <div class="profile-card">
+            <div class="profile-avatar">👤</div>
+            <div class="profile-name">Ujwala</div>
+            <div class="profile-sub">Your emotional wellness companion</div>
+        </div>
+
+        <div class="score-card">
+            <h4>📊 Daily Mood Score</h4>
+            <div class="score-number">78%</div>
+            <div class="score-text">You are doing fairly well today. Keep checking in 💜</div>
+        </div>
+
+        <div class="menu-item"tabindex="0">🏠 Dashboard</div>
+        <div class="menu-item"tabindex="0">💬 Chat Assistant</div>
+        <div class="menu-item"tabindex="0">😊 Mood Tracker</div>
+        <div class="menu-item"tabindex="0">🧘 Relaxation</div>
+        <div class="menu-item"tabindex="0">📔 Journal</div>
+        <div class="menu-item"tabindex="0">🎵 Calm Music</div>
+        <div class="menu-item"tabindex="0">⚙️ Settings</div>
+
+        <div class="help-box">
+            <h4>Need Immediate Support?</h4>
+            <p>If you're feeling overwhelmed, reach out to someone you trust or a mental health professional.</p>
+            <button class="help-btn" onclick="toolResponse('If you are in crisis or feel unsafe, please contact a trusted person or emergency support immediately.')">Get Help</button>
+        </div>
+    </div>
+
+    <div class="main">
+        <div class="topbar">
+            <div class="top-left">
+                <h1>Welcome back, Ujwala 👋</h1>
+                <p>Friday • Your wellness journey continues today</p>
+            </div>
+
+            <div class="top-right">
+                <div class="search-box">
+                    <input type="text" placeholder="Search wellness tools...">
+                </div>
+                <div class="icon-btn">🔔</div>
+                <div class="icon-btn">☀️</div>
+            </div>
+        </div>
+
+        <div class="hero">
+            <h2>Your Safe Space for Emotional Wellness 💜</h2>
+            <p>
+                Talk, breathe, reflect, and heal with AI-powered emotional support.
+                This chatbot is designed to help users manage stress, anxiety, and emotional health
+                through supportive conversation and wellness activities.
+            </p>
+        </div>
+        <div class="ux-start-box">
+    <div class="ux-title">✨ Start Your Wellness Check</div>
+    <div class="ux-subtitle">
+        A simple guided flow to help users begin their emotional wellness journey.
+    </div>
+
+    <div class="ux-steps">
+        <div class="ux-step">
+            <div class="ux-step-number">1</div>
+            <div>
+                <div class="ux-step-title">Check Your Mood</div>
+                <div class="ux-step-text">Start by identifying how you feel right now.</div>
+            </div>
+        </div>
+
+        <div class="ux-step">
+            <div class="ux-step-number">2</div>
+            <div>
+                <div class="ux-step-title">Talk to MindEase AI</div>
+                <div class="ux-step-text">Share your emotions and receive supportive responses.</div>
+            </div>
+        </div>
+
+        <div class="ux-step">
+            <div class="ux-step-number">3</div>
+            <div>
+                <div class="ux-step-title">Use a Wellness Tool</div>
+                <div class="ux-step-text">Try breathing, affirmations, journaling, or calming music.</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+        <div class="stats-row">
+            <div class="stat-card">
+                <div class="stat-title">Mood Check-Ins</div>
+                <div class="stat-value">12</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-title">Breathing Sessions</div>
+                <div class="stat-value">08</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-title">Journal Entries</div>
+                <div class="stat-value">15</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-title">Wellness Streak</div>
+                <div class="stat-value">6 Days</div>
+            </div>
+        </div>
+        <div class="emotion-care-box">
+    <div class="emotion-care-title">💜 You’re Safe Here</div>
+    <div class="emotion-care-text">
+        It’s okay to not feel okay sometimes. MindEase AI is designed to provide a calm,
+        supportive, and judgment-free space where users can check in with their emotions,
+        reflect gently, and access small wellness tools at their own pace.
+    </div>
+
+    <div class="emotion-tags">
+        <div class="emotion-tag">🌸 No Judgment</div>
+        <div class="emotion-tag">🫶 Emotional Support</div>
+        <div class="emotion-tag">🌿 Calm Experience</div>
+        <div class="emotion-tag">💬 Safe Conversation</div>
+        <div class="emotion-tag">🧠 Wellness Focused</div>
+    </div>
+</div>
+
+        <div class="breathing-section">
+            <h3>🌬 Guided Breathing Space</h3>
+            <p>Pause for a moment. Inhale deeply… exhale slowly… let your mind settle.</p>
+            <div class="breathing-orb"></div>
+            <button class="breathing-btn" onclick="toolResponse('Let\'s begin a breathing session: Inhale for 4 seconds, hold for 4 seconds, exhale for 6 seconds.')">Start Breathing</button>
+        </div>
+
+        <div class="section-title">Why Choose MindEase AI 🌟</div>
+        <div class="why-grid">
+            <div class="why-card">
+                <h3>24/7 Support</h3>
+                <p>Users can access emotional support and wellness tools anytime, anywhere.</p>
+            </div>
+            <div class="why-card">
+                <h3>Private & Safe</h3>
+                <p>Built to create a comfortable, judgment-free space for users to express emotions.</p>
+            </div>
+            <div class="why-card">
+                <h3>AI-Powered Care</h3>
+                <p>Understands user feelings and suggests meaningful wellness activities instantly.</p>
+            </div>
+            <div class="why-card">
+                <h3>Holistic Wellness</h3>
+                <p>Combines journaling, breathing, mood tracking, and supportive conversations in one place.</p>
+            </div>
+        </div>
+
+        <div class="cards">
+            <div class="card">
+                <h3>😊 Mood Check-In</h3>
+                <p>Track how you feel every day and understand your emotional patterns over time.</p>
+            </div>
+
+            <div class="card">
+                <h3>🧘 Mindfulness</h3>
+                <p>Practice guided breathing, short meditations, and relaxation exercises.</p>
+            </div>
+
+            <div class="card">
+                <h3>📔 Gratitude Journal</h3>
+                <p>Write down positive moments and build a healthier, calmer mindset.</p>
+            </div>
+
+            <div class="card">
+                <h3>💬 AI Companion</h3>
+                <p>Talk to a supportive chatbot that listens without judgment and responds with care.</p>
+            </div>
+        </div>
+
+        <div class="section-title">What Users Say 💬</div>
+        <div class="testimonials">
+            <div class="testimonial-card">
+                <h3>“Very calming experience”</h3>
+                <p>This app made me feel heard and supported during stressful days.</p>
+            </div>
+            <div class="testimonial-card">
+                <h3>“Beautiful and helpful”</h3>
+                <p>The breathing tools and mood tracker really helped me stay mindful.</p>
+            </div>
+            <div class="testimonial-card">
+                <h3>“Feels like a real wellness app”</h3>
+                <p>The interface is simple, elegant, and makes mental health support approachable.</p>
+            </div>
+        </div>
+        <div class="safety-box">
+    <div class="safety-title">🔒 Your Privacy & Safety Matter</div>
+    <div class="safety-text">
+        MindEase AI is designed to provide emotional support in a calm and respectful way.
+        It is intended to help users reflect, feel heard, and access wellness tools — while also
+        encouraging professional or emergency support whenever serious help is needed.
+    </div>
+
+    <div class="safety-points">
+        <div class="safety-point">💬 Your feelings are treated with care and without judgment.</div>
+        <div class="safety-point">🛡 This space is designed to feel private, calm, and emotionally safe.</div>
+        <div class="safety-point">⚠ MindEase AI is a support companion, not a replacement for licensed mental health care.</div>
+        <div class="safety-point">🤝 In difficult situations, users are encouraged to reach out to trusted people or professionals.</div>
+    </div>
+</div>
+
+        <div class="chat-section">
+            <div class="chat-box">
+                <div class="chat-title">💬 Chat with MindEase AI</div>
+
+                <div class="messages" id="messages">
+                    <div class="msg bot">Hi, I'm MindEase AI 🌸 How are you feeling today?</div>
+                </div>
+                <div class="chat-suggestions">
+    <button class="suggestion-chip" onclick="quickMood('I feel overwhelmed')">I feel overwhelmed</button>
+    <button class="suggestion-chip" onclick="quickMood('I need motivation')">I need motivation</button>
+    <button class="suggestion-chip" onclick="quickMood('Help me relax')">Help me relax</button>
+    <button class="suggestion-chip" onclick="quickMood('I feel lonely')">I feel lonely</button>
+</div>
+
+                <div class="chat-input">
+                    <input type="text" id="userInput" placeholder="Type how you're feeling...">
+                    <button id="sendBtn">Send</button>
+                </div>
+            </div>
+
+            <div class="wellness-box">
+                <div class="chat-title">🌈 Quick Mood Check</div>
+
+                <div class="mood-grid">
+                    <button class="mood-btn" data-mood="I feel anxious">😟 Anxious</button>
+                    <button class="mood-btn" data-mood="I feel stressed">😣 Stressed</button>
+                    <button class="mood-btn" data-mood="I feel sad">😔 Sad</button>
+                    <button class="mood-btn" data-mood="I feel okay">🙂 Okay</button>
+                </div>
+
+                <div class="wellness-tools">
+                    <div class="chat-title" style="font-size:22px; margin-top:25px;">✨ Wellness Tools</div>
+
+                    <div class="tool-item" tabindex="0" data-tool="Let's try a 1-minute breathing exercise.">🌬 Guided Breathing</div>
+                    <div class="tool-item" tabindex="0" data-tool="Here is a positive affirmation: You are doing your best, and that is enough.">💖 Positive Affirmations</div>
+                    <div class="tool-item" tabindex="0" data-tool="How about writing 3 things you are grateful for today?">📔 Gratitude Journal</div>
+                    <div class="tool-item" tabindex="0" data-tool="Playing calming music suggestions for relaxation...">🎵 Calming Music</div>
+                    <div class="tool-item" tabindex="0" data-tool="Try a gentle neck and shoulder stretch for 2 minutes.">🧍 Stretch Reminder</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function addMessage(text, sender) {
+    const messages = document.getElementById("messages");
+    const msg = document.createElement("div");
+    msg.className = "msg " + sender;
+    msg.innerText = text;
+    messages.appendChild(msg);
+    messages.scrollTop = messages.scrollHeight;
+}
+
+function botReply(userText) {
+    let reply = "I'm here for you 💜 Tell me more about how you're feeling.";
+    const text = userText.toLowerCase();
+
+    if (text.includes("stress")) {
+        reply = "Stress can feel really heavy. Try taking 3 slow breaths. Would you like a calming activity?";
+    } else if (text.includes("anxious") || text.includes("anxiety")) {
+        reply = "Anxiety can feel overwhelming. Let's focus on grounding. Can you name 3 things you can see right now?";
+    } else if (text.includes("sad") || text.includes("low")) {
+        reply = "I'm sorry you're feeling this way. You don't have to carry it alone. Would you like a comforting affirmation?";
+    } else if (text.includes("angry")) {
+        reply = "That sounds intense. A short pause and a breathing exercise may help before reacting.";
+    } else if (text.includes("alone")) {
+        reply = "You deserve support and connection. Even talking here is a meaningful first step.";
+    } else if (text.includes("okay") || text.includes("fine")) {
+        reply = "I'm glad you're checking in. Would you like a small wellness activity to stay calm today?";
+    } else if (text.includes("overwhelmed")) {
+    reply = "It sounds like a lot is on your mind right now. Let’s slow it down together. Try focusing on one small thing you can do next.";
+} else if (text.includes("motivation")) {
+    reply = "You do not need to do everything at once. Even a small step today is still progress. Would you like a positive affirmation?";
+} else if (text.includes("relax")) {
+    reply = "Let’s help your mind settle. A breathing exercise or calming music could be a good place to begin.";
+} else if (text.includes("lonely")) {
+    reply = "Feeling lonely can be painful. I’m here with you right now, and your feelings matter.";
+}
+    
+    setTimeout(() => addMessage(reply, "bot"), 500);
+}
+
+function sendMessage() {
+    const input = document.getElementById("userInput");
+    const text = input.value.trim();
+
+    if (text !== "") {
+        addMessage(text, "user");
+        botReply(text);
+        input.value = "";
+    }
+}
+
+function quickMood(text) {
+    addMessage(text, "user");
+    botReply(text);
+}
+
+function toolResponse(text) {
+    addMessage(text, "bot");
+}
+
+document.getElementById("sendBtn").addEventListener("click", sendMessage);
+
+document.getElementById("userInput").addEventListener("keypress", function(event) {
+    if (event.key === "Enter") {
+        sendMessage();
+    }
+});
+
+document.querySelectorAll(".mood-btn").forEach(btn => {
+    btn.addEventListener("click", function() {
+        quickMood(this.getAttribute("data-mood"));
+    });
+});
+
+document.querySelectorAll(".tool-item").forEach(item => {
+    item.addEventListener("click", function() {
+        toolResponse(this.getAttribute("data-tool"));
+    });
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,23 @@
+
+{
+  "name": "MindEase AI",
+  "short_name": "MindEase",
+  "description": "AI Powered Mental Health Chatbot Assistant",
+  "start_url": "./mindease_ui.html",
+  "display": "standalone",
+  "background_color": "#f8f6ff",
+  "theme_color": "#6c63ff",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
